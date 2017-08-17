@@ -1,0 +1,9 @@
+{
+  "default": {
+    "logger": {
+      "console": { "enabled": true, "level": "debug" },
+      "file": {"enabled": false },
+      "syslog": { "enabled": false }
+    }
+  }
+}
