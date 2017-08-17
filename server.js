@@ -22,6 +22,7 @@ require( 'consign' )
                     .include( 'middleware' )
                     .include( 'controllers' )
                     .include( 'routes' )
+		    .include( 'errors' )
                     .into( app );
 
 let PORT = process.env.PORT || 3001;

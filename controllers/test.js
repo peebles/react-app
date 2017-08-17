@@ -7,5 +7,13 @@ module.exports = function( app ) {
     res.status( req.body.statusCode || 400 ).send( req.body.statusMessage || 'No message' );
   }
 
+  lib.exceptions = ( req, res, cb ) => {
+    let foo = bar.x.y;
+  }
+
+  lib.fallbacks = ( req, res, cb ) => {
+    cb( new app.lib.error( 400, 'This is a fallback error' ) );
+  }
+
   return lib;
 }
