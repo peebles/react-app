@@ -5,4 +5,5 @@ module.exports = function( app ) {
   app.post( '/test/errors', test.errors );
   app.post( '/test/exceptions', test.exceptions );
   app.post( '/test/fallbacks', test.fallbacks );
+  app.post( '/test/success', test.success );
 }

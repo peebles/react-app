@@ -5,6 +5,8 @@ import About from '../about';
 import './App.css';
 import logo from './logo.svg';
 
+import AlertModal from '../alert-modal';
+
 const App = () => (
   <div className="App">
 
@@ -17,6 +19,8 @@ const App = () => (
       <Link to="/">Home</Link>
       <Link to="/about-us">About</Link>
     </header>
+
+    <AlertModal />
 
     <main>
       <Route exact path="/" component={Home} />

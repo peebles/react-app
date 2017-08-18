@@ -6,6 +6,10 @@ import store, { history } from './store';
 import App from './containers/app';
 import registerServiceWorker from './registerServiceWorker';
 
+// Global CSS
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
+
 import './index.css';
 
 const target = document.querySelector('#root');

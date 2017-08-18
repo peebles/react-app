@@ -15,5 +15,9 @@ module.exports = function( app ) {
     cb( new app.lib.error( 400, 'This is a fallback error' ) );
   }
 
+  lib.success = ( req, res, cb ) => {
+    res.json( req.body );
+  }
+
   return lib;
 }
