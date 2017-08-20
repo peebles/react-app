@@ -2,16 +2,21 @@ import React from 'react';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
 import {
   increment,
   incrementAsync,
   decrement,
   decrementAsync
 } from '../../reducers/counter';
-
 import { globalAlertOpen, globalNotification } from '../../reducers/global';
+import {
+  apiCall,
+  API_STATE_FETCHING,
+  API_STATE_ERROR,
+  API_STATE_SUCCESS } from '../../reducers/api';
 
-import { apiCall } from '../../reducers/api';
+import Classnames from 'classnames';
 
 const Home = props => {
   // For testing api calls
@@ -43,6 +48,13 @@ const Home = props => {
     successType: ( result ) => { props.globalAlertOpen( 'Success', JSON.stringify( result, null, 2 ) ); }
   };
 
+  const apiBtnClass = Classnames({
+    'btn': true,
+    'btn-disabled': ( props.apiState === API_STATE_FETCHING ),
+    'btn-success':  ( props.apiState === API_STATE_SUCCESS ),
+    'btn-danger':   ( props.apiState === API_STATE_ERROR ),
+  });
+
   return (
     <div>
       <h1>Home</h1>
@@ -72,11 +84,21 @@ const Home = props => {
       </div>
       
       <div>
-	<button className="btn btn-primary" onClick={ () => props.apiCall( successOptions ) }>Call Success</button>
-	<button className="btn btn-warning" onClick={ () => props.apiCall( fallbackOptions ) }>Call Fallback</button>
-	<button className="btn btn-danger" onClick={ () => props.apiCall( errorOptions ) }>Call Error</button>
-	<button className="btn btn-danger" onClick={ () => props.apiCall( exceptionOptions ) }>Call Exception</button>
+	<button className={apiBtnClass} onClick={ () => props.apiCall( successOptions ) }>Call Success</button>
+	<button className={apiBtnClass} onClick={ () => props.apiCall( fallbackOptions ) }>Call Fallback</button>
+	<button className={apiBtnClass} onClick={ () => props.apiCall( errorOptions ) }>Call Error</button>
+	<button className={apiBtnClass} onClick={ () => props.apiCall( exceptionOptions ) }>Call Exception</button>
       </div>
+
+      <p></p>
+      { props.apiState !== API_STATE_ERROR  ? null :
+	(
+	  <div className={Classnames({
+	      alert: true,
+	      'alert-warning': ( props.apiErrorCode !== 500 ),
+	      'alert-danger':  ( props.apiErrorCode === 500 )
+	    })}>{props.apiErrorMessage}</div>
+      ) }
     
     </div>
   );
@@ -86,7 +108,12 @@ const mapStateToProps = (state, currentProps) => {
   return {
     count: state.counter.count,
     isIncrementing: state.counter.isIncrementing,
-    isDecrementing: state.counter.isDecrementing
+    isDecrementing: state.counter.isDecrementing,
+
+    apiState: state.api.state,
+    apiResult: state.api.result,
+    apiErrorMessage: state.api.error,
+    apiErrorCode: state.api.code
   };
 };
 

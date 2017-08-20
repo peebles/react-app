@@ -7,8 +7,13 @@ export const API_START = 'api/API_START';
 export const API_END   = 'api/API_END';
 export const API_RESET = 'api/API_RESET';
 
+export const API_STATE_FETCHING = 'api/API_STATE_FETCHING';
+export const API_STATE_ERROR    = 'api/API_STATE_ERROR';
+export const API_STATE_SUCCESS  = 'api/API_STATE_SUCCESS';
+export const API_STATE_IDLE     = 'api/API_STATE_IDLE';
+
 const initialState = {
-  state: 'IDLE',
+  state: API_STATE_IDLE,
   error: null,
   result: null,
   code: 200
@@ -20,14 +25,14 @@ export default ( state = initialState, action ) => {
     case API_START:
       return {
 	...state,
-	state: 'FETCHING',
+	state: API_STATE_FETCHING,
 	error: null
       };
       
     case API_END:
       return {
 	...state,
-	state: ( action.err ? 'ERROR' : 'SUCCESS' ),
+	state: ( action.err ? API_STATE_ERROR : API_STATE_SUCCESS ),
         result: action.result,
         error: ( action.err ? action.err.message : null ),
         code: ( action.err && action.err.code ? action.err.code : 400 )
@@ -36,7 +41,7 @@ export default ( state = initialState, action ) => {
     case API_RESET:
       return {
 	...state,
-	state: 'IDLE',
+	state: API_STATE_IDLE,
 	error: null,
 	code: 200
       };
@@ -71,7 +76,7 @@ export const apiCall = ( request ) => {
           .end( (err, result ) => {
             let e = null;
             if ( err ) {
-	      if ( result.statusCode == 404 ) {
+	      if ( result.statusCode === 404 ) {
 		e = {
 		  code: 404,
 		  message: result.error.message
