@@ -24,6 +24,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "sprintf-js": "^1.1.1",
+    "static-favicon": "^2.0.0-alpha",
     "superagent": "^3.5.2"
   },
   "proxy": "http://localhost:3001",

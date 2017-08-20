@@ -20,7 +20,7 @@ Various other useful packages and capabilities have been added.  See [more](./do
 This app requires node 6+.  If you do not already have it, install "nvm" to manage node versions and:
 
 ```bash
-    nvm install v6.2.0
+nvm install v6.2.0
 ```
 
 or
@@ -57,4 +57,14 @@ And then run the react stuff with "npm start".
 Edit `package.json` to change where the development server proxies requests
 to.  If you need to run the api server inside of docker, or if it is running
 in the cloud, change "proxy" in `package.json`.
+
+## Deploy to Production
+
+```bash
+docker-compose build
+docker-compose up -d
+```
+
+The production-mode server is running on port 80 inside the container.
+
 
