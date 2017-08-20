@@ -71,3 +71,14 @@ export default connect(
 ```
 
 See `./src/containers/home/index.js` for more extensive examples.
+
+## Other Things to Look At
+
+As a possible alternative to thunks, see [this](https://github.com/ericclemmons/react-resolver).
+
+For initializing the redux state from the server, see [this](https://github.com/KELiON/redux-async-initial-state).
+
+For an alternative to defining endpoints for everything, and instead making
+what looks like a big javascript object available over the network, check
+out [Falcor](https://netflix.github.io/falcor/starter/why-falcor.html) and
+using this with [redux](https://github.com/ekosz/redux-falcor).
