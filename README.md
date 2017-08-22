@@ -20,13 +20,13 @@ Various other useful packages and capabilities have been added.  See [more](./do
 This app requires node 6+.  If you do not already have it, install "nvm" to manage node versions and:
 
 ```bash
-nvm install v6.2.0
+nvm install v6.11.2
 ```
 
 or
 
 ```bash
-nvm use v6.2.0
+nvm use v6.11.2
 ```
 
 Then "npm install".
