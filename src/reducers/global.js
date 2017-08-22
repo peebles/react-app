@@ -1,3 +1,5 @@
+import Alert from 'react-s-alert';
+
 export const ALERT_OPEN = 'global/ALERT_OPEN';
 export const ALERT_CLOSE = 'global/ALERT_CLOSE';
 export const NOTIFICATION = 'global/NOTIFICATION';
@@ -38,8 +40,8 @@ export default ( state = initialState, action ) => {
 	default:
 	  severity = 'warning';
       }
-      // Operate directly on the toastr, no need for state changes
-      window.toastr[ severity ]( action.message );
+      // Operate directly on the s-alert, no need for state changes
+      Alert[ severity ]( action.message );
       return state;
 
     default:
