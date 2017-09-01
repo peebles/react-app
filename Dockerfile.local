@@ -1,0 +1,5 @@
+FROM node:6-slim
+ENV NPM_CONFIG_LOGLEVEL warn
+RUN npm install -g forever
+WORKDIR /deploy
+CMD forever --spinSleepTime 5000 --fifo server.js
